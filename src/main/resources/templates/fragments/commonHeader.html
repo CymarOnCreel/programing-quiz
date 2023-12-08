@@ -1,0 +1,6 @@
+<div th:fragment="header">
+<!-- navbar basic buttons , changing depending on who is logged in-->
+<div th:replace="fragments/header-fragment-guest::header-fragment-guest"></div>
+<!--  <div th:replace="fragments/header-fragment-user::header-fragment-user"></div>-->
+<!-- if user admin	<div th:replace="fragments/header-fragment-admin::header-fragment-admin"></div> -->
+</div>
