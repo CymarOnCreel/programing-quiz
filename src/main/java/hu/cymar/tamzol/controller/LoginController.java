@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import hu.cymar.tamzol.model.User;
+import hu.cymar.tamzol.model.UserCategory;
 import hu.cymar.tamzol.service.UserService;
 
 @Controller
@@ -35,7 +36,8 @@ public class LoginController {
 	        User user = userService.getUserByUserName(userName);
 
 	        if (user != null && passwordEncoder.matches(password, user.getPassword())) {
-	        	 session.setAttribute("loggedIn", true);
+	        	if(user.getUserCategory().equals(UserCategory.ADMIN)) session.setAttribute("isAdmin", true); 
+	        	session.setAttribute("loggedIn", true);
 	             session.setAttribute("loggedUsername", user.getUserName());  
 	        	return "redirect:/";
 	        } else {
