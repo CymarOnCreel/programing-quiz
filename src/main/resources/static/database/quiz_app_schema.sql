@@ -9,7 +9,8 @@ CREATE TABLE users (
     username VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(80) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
-    user_category ENUM('USER', 'ADMIN') NOT NULL DEFAULT 'USER'
+    user_category ENUM('USER', 'ADMIN') NOT NULL DEFAULT 'USER',
+    status TINYINT NULL DEFAULT 0
 );
 
 -- Question Category Table

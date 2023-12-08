@@ -45,9 +45,10 @@ INSERT INTO answers (answer_text,question_id, is_correct) VALUES
 ('A programming language for mobile app development.', 5, false);
 
 
-INSERT INTO users (firstname, lastname, username, password, email, user_category) VALUES
-('Teszt', 'Elek', 'teszt_elek', 'password123', 'teszt.elek@quiz.com','USER'),
-('Nap', 'Pali', 'nap_pali', '123password', 'nap.pali@quiz.com','ADMIN');
+INSERT INTO users (firstname, lastname, username, password, email, user_category, status) VALUES
+('Teszt', 'Elek', 'teszt_elek', 'password123', 'teszt.elek@quiz.com','USER',0),
+('Nap', 'Pali', 'nap_pali', '123password', 'nap.pali@quiz.com','ADMIN',0),
+('John', 'Doe', 'john_doe', 'homealone', 'john.doe@quiz.com','USER',1);
 INSERT INTO answer_scores (user_id, category_id, subcategory_id, quest_count, right_answer_count) VALUES
 (1, 1, 1, 5, 3),
 (2, 1, 2, 5, 4);
