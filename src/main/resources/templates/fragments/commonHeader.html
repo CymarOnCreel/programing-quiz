@@ -2,13 +2,19 @@
 	<!-- navbar basic buttons , changing depending on who is logged in-->
 
 	<div th:if="${session.loggedIn}">
-		<div th:replace="fragments/header-fragment-user::header-fragment-user"></div>
+		<div th:if="${session.isAdmin}">
+			<div
+				th:replace="fragments/header-fragment-admin::header-fragment-admin"></div>
+		</div>
+		<div th:unless="${session.isAdmin}">
+			<div
+				th:replace="fragments/header-fragment-user::header-fragment-user"></div>
+		</div>
 	</div>
 	<div th:unless="${session.loggedIn}">
 		<div
 			th:replace="fragments/header-fragment-guest::header-fragment-guest"></div>
 	</div>
-	</header>
 	<!--  <div th:replace="fragments/header-fragment-guest::header-fragment-guest"></div>-->
 	<!--  <div th:replace="fragments/header-fragment-user::header-fragment-user"></div>-->
 	<!-- if user admin	<div th:replace="fragments/header-fragment-admin::header-fragment-admin"></div> -->
