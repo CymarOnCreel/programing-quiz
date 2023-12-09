@@ -10,7 +10,7 @@ CREATE TABLE users (
     password VARCHAR(80) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
     user_category ENUM('USER', 'ADMIN') NOT NULL DEFAULT 'USER',
-    status TINYINT NULL DEFAULT 0
+    status TINYINT NOT NULL DEFAULT 0
 );
 
 -- Question Category Table
@@ -30,7 +30,8 @@ CREATE TABLE question_subcategories (
 -- Questions Table
 CREATE TABLE questions (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    question_text TEXT NOT NULL,
+    question_text TEXT NOT NULL, 
+    question_status ENUM('ACCEPTED', 'REJECTED', 'IN_PROGRESS') NOT NULL DEFAULT 'IN_PROGRESS',
     category_id INT,
     subcategory_id INT,
     FOREIGN KEY (category_id) REFERENCES question_categories(id),
@@ -42,18 +43,18 @@ CREATE TABLE answers (
     id INT PRIMARY KEY AUTO_INCREMENT,
     answer_text TEXT NOT NULL,
     question_id INT,
-    is_correct BOOLEAN NOT NULL,
+    is_correct TINYINT NOT NULL DEFAULT 0,
     FOREIGN KEY (question_id) REFERENCES questions(id)
 );
 
 
--- Answer Score Table
-CREATE TABLE answer_scores (
+-- Quiz Score Table
+CREATE TABLE quiz_scores (
     id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
     category_id INT,
     subcategory_id INT,
-    quest_count INT,
+    question_count INT,
     right_answer_count INT,
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (category_id) REFERENCES question_categories(id),
