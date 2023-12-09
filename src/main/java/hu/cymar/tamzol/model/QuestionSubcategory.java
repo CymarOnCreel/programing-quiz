@@ -22,13 +22,13 @@ public class QuestionSubcategory {
 
 	@ManyToOne
 	@JoinColumn(name = "category_id")
-	private QuestionCategory mainCategory;
+	private QuestionCategory category;
 
-	public QuestionSubcategory(Long id, String subcategoryName, QuestionCategory mainCategory) {
+	public QuestionSubcategory(Long id, String subcategoryName, QuestionCategory category) {
 		super();
 		this.id = id;
 		this.subcategoryName = subcategoryName;
-		this.mainCategory = mainCategory;
+		this.category = category;
 	}
 
 	public QuestionSubcategory() {
@@ -52,11 +52,11 @@ public class QuestionSubcategory {
 	}
 
 	public QuestionCategory getMainCategory() {
-		return mainCategory;
+		return category;
 	}
 
-	public void setMainCategory(QuestionCategory mainCategory) {
-		this.mainCategory = mainCategory;
+	public void setMainCategory(QuestionCategory category) {
+		this.category = category;
 	}
 
 }

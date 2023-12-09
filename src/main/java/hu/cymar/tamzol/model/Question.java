@@ -23,7 +23,7 @@ public class Question {
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name="question_status", nullable=false)
-	private QuestionStatus questionstatus=QuestionStatus.IN_PROGRESS;
+	private QuestionStatus questionStatus=QuestionStatus.IN_PROGRESS;
 	
 	@ManyToOne
 	@JoinColumn (name="category_id")
@@ -43,6 +43,24 @@ public class Question {
 		this.questionText = questionText;
 		this.category = category;
 		this.subcategory = subcategory;
+	}
+
+	public Question(Long id, String questionText, QuestionStatus questionStatus, QuestionCategory category,
+			QuestionSubcategory subcategory) {
+		super();
+		this.id = id;
+		this.questionText = questionText;
+		this.questionStatus = questionStatus;
+		this.category = category;
+		this.subcategory = subcategory;
+	}
+
+	public QuestionStatus getQuestionStatus() {
+		return questionStatus;
+	}
+
+	public void setQuestionStatus(QuestionStatus questionStatus) {
+		this.questionStatus = questionStatus;
 	}
 
 	public Long getId() {
