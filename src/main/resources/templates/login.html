@@ -15,8 +15,8 @@
 					required> <small class="form-text text-muted">8-20
 					characters, must contain an uppercase letter and a number.</small>
 			</div>
-			<div th:if="${error}" class="error-message ">
-				<p class="text-red" th:text="${error}" ></p>
+			<div th:if="${error}">
+				<p class="error-message" th:text="${error}" ></p>
 			</div>
 			<div class="d-flex justify-content-between align-items-center ">
 				<button type="submit"

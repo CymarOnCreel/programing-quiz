@@ -1,16 +1,25 @@
 
-<html layout:decorate="fragments/defaultLayout" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html layout:decorate="fragments/defaultLayout"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <meta charset="UTF-8">
 <body>
-	<div layout:fragment="content" class="d-flex justify-content-center align-items-center flex-grow-1" >
+	<div layout:fragment="content"
+		class="d-flex justify-content-center align-items-center flex-grow-1">
 		<section class="welcome-section text-center">
-			<h1 >Welcome To The Best Programming Quiz</h1>
+			<h1>Welcome To The Best Programming Quiz</h1>
 			<div class="container-fluid">
 				<img th:src="@{/images/quizpicture.png}"
 					class="img-fluid image-placeholder" alt="Quiz Image">
 			</div>
-			<h1>Please login to use the page</h1>
-		</section>-
+			<div th:if="${session.loggedIn}">
+				<h1 th:text="'Welcome, ' + ${session.loggedUsername}"></h1>
+			</div>
+			<div th:unless="${session.loggedIn}">
+				<h1>Please login to use the page</h1>
+			</div>
+
+		</section>
+		-
 	</div>
 
 </body>
