@@ -1,0 +1,31 @@
+<html layout:decorate="fragments/defaultLayout"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<body class="d-flex flex-column">
+	<div layout:fragment="content"
+		class=" align-items-center justify-content-center flex-grow-1">
+
+		<div class="col-sm-12 text-center">
+			<p class="display-2 text-white bg-success"
+				th:text="'Category: '+${selectedCategory.categoryName}"></p>
+			<form th:action="@{/quiz}" method="post" id="quizForm">
+				<div th:each="subcategory : ${subcategories}" class="subcategory">
+					<label class="m-2"> <input type="checkbox"
+						name="selectedSubcategories" th:value="${subcategory.id}" /> <span
+						th:text="${subcategory.subcategoryName}"></span>
+					</label>
+				</div>
+				<div th:if="${error}" class="alert alert-danger" role="alert">
+					<span th:text="${error}"></span>
+				</div>
+				<button type="submit" class="btn btn-primary btn-lg mt-3">Submit</button>
+			</form>
+		</div>
+	</div>
+
+
+
+
+</body>
+</html>

@@ -20,7 +20,6 @@ public class QuestionManagementController {
 	public String questionManagementView(Model model) {
 		List<Question> all = qs.getAll();
 		model.addAttribute("questions", all);
-		System.out.println(all);
 		return "questionManagement";
 	}
 

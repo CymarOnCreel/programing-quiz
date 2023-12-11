@@ -1,0 +1,36 @@
+
+<html layout:decorate="fragments/defaultLayout"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+
+<meta charset="UTF-8">
+<body class="d-flex flex-column">
+	<div class="row flex-grow-1" layout:fragment="content">
+		<div class="col-sm-12">
+			<div class="jumbotron bg-dark text-white">
+				<h1 class="display-4 text-center">Filtered Questions</h1>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-sm-12">
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>Question ID</th>
+							<th>Question Text</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="q: ${filteredQuestions}">
+							<td th:text="${q.id}">Id</td>
+							<td th:text="${q.questionText}">question</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

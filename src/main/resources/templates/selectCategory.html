@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html layout:decorate="fragments/defaultLayout"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+
+<meta charset="UTF-8">
+<body class="d-flex flex-column">
+	<div layout:fragment="content"
+		class=" align-items-center justify-content-center flex-grow-1">
+
+		<div class="text-center mb-4">
+			<p class="display-2 text-white bg-success">Choose a Category</p>
+		</div>
+		<form th:action="@{/selectSubcategories}" method="post"
+			class="text-center">
+			<div class="btn-group-vertical" role="group" aria-label="Categories">
+				<div th:each="category : ${categories}">
+					<button type="submit" class="btn btn-outline-primary btn-lg m-2"
+						name="id" th:value="${category.id}">
+						<span th:text="${category.categoryName}"></span>
+					</button>
+				</div>
+			</div>
+			<input type="hidden" name="id" id="selectedCategoryId"
+				th:value="${selectedCategory != null ? selectedCategory.id : ''}" />
+		</form>
+	</div>
+</body>
+</html>

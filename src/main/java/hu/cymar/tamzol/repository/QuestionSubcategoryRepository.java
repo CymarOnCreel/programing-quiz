@@ -8,5 +8,5 @@ import hu.cymar.tamzol.model.QuestionSubcategory;
 
 public interface QuestionSubcategoryRepository extends JpaRepository<QuestionSubcategory, Long> {
 
-	List<QuestionSubcategory> findByCategory_Id(Long categoryId);
+	List<QuestionSubcategory> findByCategoryId(Long categoryId);
 }
