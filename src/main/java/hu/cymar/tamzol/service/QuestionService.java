@@ -18,8 +18,5 @@ public class QuestionService {
 	public List<Question> getAll(){
 		return qr.findAll();
 	}
-//    public List<Question> getByCategoryAndSubcategories(Long id, List<Long> subcategories) {
-//        return qr.findByCategoryAndSubcategoryIn(id, subcategories);
-//    }
 	
 }
