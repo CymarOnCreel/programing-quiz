@@ -8,29 +8,40 @@
 	<div class="row flex-grow-1" layout:fragment="content">
 		<div class="col-sm-12">
 			<div class="jumbotron bg-dark text-white">
-				<h1 class="display-4 text-center">Filtered Questions</h1>
+				<h1 class="display-4 text-center">Quiz</h1>
 			</div>
 		</div>
 
-
-		<div class="row">
-			<div class="col-sm-12">
-				<table class="table table-striped table-hover">
-					<thead>
-						<tr>
-							<th>Question ID</th>
-							<th>Question Text</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="q: ${filteredQuestions}">
-							<td th:text="${q.id}">Id</td>
-							<td th:text="${q.questionText}">question</td>
-						</tr>
-					</tbody>
-				</table>
+		<form th:action="@{/getQuizResult}" method="post" id="quizResult">
+			<div class="row">
+				<div class="col-sm-12">
+					<table class="table table-striped table-hover">
+						<thead>
+							<tr>
+								<th>Question</th>
+								<th>Answer</th>
+							</tr>
+						</thead>
+						<tbody>
+							<th:block th:each="q: ${filteredQuestions}">
+								<tr>
+									<td><span th:text="${q.questionText}">question</span></td>
+									<td>
+									<div th:each="a : ${answersOfQuestion}"
+										class="answersOfQuestion">
+										<label class="m-2"> <input class="form-check-input" type="radio"
+											name="answersOfQuestion" th:value="${a.id}" /> <span
+											th:text="${a.answerText}"></span>
+										</label>
+									</div>
+								</tr>
+							</th:block>
+						</tbody>
+					</table>
+				</div>
 			</div>
-		</div>
+			<button type="submit" class="btn btn-primary btn-lg mt-3">Submit</button>
+		</form>
 	</div>
 </body>
 </html>
