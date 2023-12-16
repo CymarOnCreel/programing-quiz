@@ -49,6 +49,6 @@ INSERT INTO users (firstname, lastname, username, password, email, user_category
 ('Teszt', 'Elek', 'teszt_elek', '$2a$10$0M..WLk2kdU0JCtd90DSve0uX4FAn81qme/arbftB5yRn6N1dQISO', 'teszt.elek@quiz.com','USER',0),
 ('Nap', 'Pali', 'nap_pali', '$2a$10$mMpzxBSwalfkMT503sBM0e.4Jd50ls2n1Ybe0Yz6MGASL6v00heN2', 'nap.pali@quiz.com','ADMIN',0),
 ('John', 'Doe', 'john_doe', '$2a$10$mE8BN5ee8ZrUDBi2MT8HBOafg5IaFD5Yuh5h6zdY8QyrcMmtktXsu', 'john.doe@quiz.com','USER',1);
-INSERT INTO quiz_scores (user_id, category_id, subcategory_id, question_count, right_answer_count) VALUES
-(1, 1, 1, 5, 3),
-(2, 1, 2, 5, 4);
+INSERT INTO quiz_scores (user_id, category_id, question_count, right_answer_count,quiz_date) VALUES
+(1, 1, 5, 3, '2011-01-01'),
+(2, 1, 5, 4, '2012-01-01');

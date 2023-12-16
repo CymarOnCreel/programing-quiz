@@ -36,20 +36,29 @@ public class QuizService implements IQuizCreation {
 		return answerRepository.getAnswersByQuestionId(id);
 	}
 
-	public List<Question> getFilteredQuestionsAndAnswers(QuestionCategory selectedCategory, List<QuestionSubcategory> subcategories, Model model) {
+	public List<Answer> getAnswersById(List<Long> answerId) {
+		List<Answer> userAnswers=new ArrayList<>();
+		for (Long long1 : answerId) {
+			userAnswers.add(answerRepository.getAnswersById(long1));
+		}
+		return userAnswers;
+	}
+	public List<Question> getFilteredQuestions(QuestionCategory selectedCategory, List<QuestionSubcategory> subcategories, Model model) {
 	    List<Question> questions = getQuestionsByCategoryAndSubcategoriesChoosen(selectedCategory, subcategories);
-
 	    List<Question> filteredQuestions = new ArrayList<>();
-	    List<List<Answer>> answersOfQuestions = new ArrayList<>();
-
 	    for (Question question : questions) {
 	        filteredQuestions.add(question);
-	        answersOfQuestions.add(getAnswersByQuestionId(question.getId()));
 	    }
 	    model.addAttribute("filteredQuestions", filteredQuestions);
-	    model.addAttribute("answersOfQuestions", answersOfQuestions);
-
 	    return filteredQuestions;
 	}
-
+	
+	public List<List<Answer>> getAnswersList(Model model, List<Question>filteredQuestions){
+		 List<List<Answer>> answersOfQuestions = new ArrayList<>();
+		 for (Question question : filteredQuestions) {
+		        answersOfQuestions.add(getAnswersByQuestionId(question.getId()));
+		    }
+		 model.addAttribute("answersOfQuestions", answersOfQuestions);
+		 return answersOfQuestions;
+	}
 }

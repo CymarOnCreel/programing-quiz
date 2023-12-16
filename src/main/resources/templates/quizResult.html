@@ -1,0 +1,50 @@
+<html layout:decorate="fragments/defaultLayout"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+
+<meta charset="UTF-8">
+<body class="d-flex flex-column">
+	<div class="row flex-grow-1" layout:fragment="content">
+		<div class="col-sm-12">
+			<div class="jumbotron bg-dark text-white">
+				<h1 class="display-4 text-center">Quiz Result</h1>
+			</div>
+		</div>
+
+		<div>
+			<h2>Total Questions: <span th:text="${questionCount}"></span></h2>
+			<h2>Correct Answers: <span th:text="${rightAnswerCount}"></span></h2>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>Question</th>
+							<th>Answers</th>
+						</tr>
+					</thead>
+					<tbody>
+					<th:block th:each="question, questionIndex: ${filteredQuestions}">
+					<tr>
+					<td>
+					<span th:text="${question.questionText}">question</span></td>
+					<td>
+					<div th:each="answer, answerIndex: ${question.answers}">
+					<label class="m-2" th:class="${answer.isCorrect ? 'bg-success' : (!userAnswers[questionIndex.index].isCorrect&& userAnswers[questionIndex.index].id == answer.id) ? 'bg-danger' : ''}">
+
+											<input class="form-check-input" type="radio" disabled="disabled"
+												th:checked="${userAnswers[questionIndex.index] == answer.id}" />
+											<span th:text="${answer.answerText}"></span>
+										</label>
+									</div>
+								</td>
+							</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

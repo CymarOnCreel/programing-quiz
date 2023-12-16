@@ -37,8 +37,8 @@ public class LoginController {
 
 	        if (user != null && passwordEncoder.matches(password, user.getPassword())) {
 	        	if(user.getUserCategory().equals(UserCategory.ADMIN)) session.setAttribute("isAdmin", true); 
-	        	session.setAttribute("loggedIn", true);
-	             session.setAttribute("loggedUsername", user.getUserName());  
+	        	session.setAttribute("user", user);
+	        	session.setAttribute("loggedIn", true);	
 	        	return "redirect:/";
 	        } else {
 	            model.addAttribute("error", "Invalid username or password");

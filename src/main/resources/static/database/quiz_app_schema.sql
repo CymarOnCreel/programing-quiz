@@ -53,10 +53,9 @@ CREATE TABLE quiz_scores (
     id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
     category_id INT,
-    subcategory_id INT,
     question_count INT,
     right_answer_count INT,
+    quiz_date DATE NOT NULL DEFAULT "1999-01-01",
     FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (category_id) REFERENCES question_categories(id),
-    FOREIGN KEY (subcategory_id) REFERENCES question_subcategories(id)
+    FOREIGN KEY (category_id) REFERENCES question_categories(id)
 );

@@ -9,4 +9,5 @@ import hu.cymar.tamzol.model.Answer;
 public interface AnswerRepository extends JpaRepository<Answer, Long>{
 
 	List<Answer> getAnswersByQuestionId(Long questionId);
+	Answer getAnswersById(Long id);
 }
