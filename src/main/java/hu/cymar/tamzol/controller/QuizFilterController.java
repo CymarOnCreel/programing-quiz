@@ -1,32 +1,30 @@
 package hu.cymar.tamzol.controller;
 
 import java.util.List;
+
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import hu.cymar.tamzol.model.QuestionCategory;
 import hu.cymar.tamzol.model.QuestionSubcategory;
-import hu.cymar.tamzol.service.IQuizCreation;
+import hu.cymar.tamzol.service.CategoriesService;
 
 @Controller
 public class QuizFilterController {
 
-	private final IQuizCreation quizCreation;
-
 	@Autowired
-	public QuizFilterController(IQuizCreation quizCreation) {
-		this.quizCreation = quizCreation;
-	}
+	CategoriesService catService;
 
 	@GetMapping("/selectCategory")
 	public String getCategories(Model model) {
-		List<QuestionCategory> categories = quizCreation.getAllCategories();
+		List<QuestionCategory> categories = catService.getAllCategories();
 		model.addAttribute("categories", categories);
-		
 		return "selectCategory";
 	}
 
@@ -43,7 +41,7 @@ public class QuizFilterController {
 			HttpSession session) {
 		boolean categoryChosen = id != null;
 		model.addAttribute("categoryChosen", categoryChosen);
-		session.setAttribute("selectedCategory", quizCreation.getCategoryById(id));
+		session.setAttribute("selectedCategory", catService.getCategoryById(id));
 		populateSubcategories(model, session);
 		return "selectSubcategories";
 	}
@@ -51,7 +49,7 @@ public class QuizFilterController {
 	private void populateSubcategories(Model model, HttpSession session) {
 		QuestionCategory selectedCategory = (QuestionCategory) session.getAttribute("selectedCategory");
 		model.addAttribute("selectedCategory", selectedCategory);
-		List<QuestionSubcategory> subcategories = quizCreation.getSubcategoriesByCategoryId(selectedCategory.getId());
+		List<QuestionSubcategory> subcategories = catService.getSubcategoriesByCategoryId(selectedCategory.getId());
 		model.addAttribute("subcategories", subcategories);
 	}
 }

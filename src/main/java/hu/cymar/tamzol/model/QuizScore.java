@@ -1,5 +1,7 @@
 package hu.cymar.tamzol.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "quiz_scores")
-public class QuizeScore {
+public class QuizScore {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,28 +27,26 @@ public class QuizeScore {
 	@JoinColumn(name = "category_id")
 	private QuestionCategory category;
 
-	@ManyToOne
-	@JoinColumn(name = "subcategory_id")
-	private QuestionSubcategory subcategory;
-
 	@Column(name = "question_count")
 	private int questionCount;
 
 	@Column(name = "right_answer_count")
 	private int rightAnswerCount;
+	@Column(nullable=false)
+	private LocalDate quizDate;
 
-	public QuizeScore(Long id, User user, QuestionCategory category, QuestionSubcategory subcategory, int questionCount,
-			int rightAnswerCount) {
+	public QuizScore(Long id, User user, QuestionCategory category,  int questionCount,
+			int rightAnswerCount,LocalDate quizDate) {
 		super();
 		this.id = id;
 		this.user = user;
 		this.category = category;
-		this.subcategory = subcategory;
 		this.questionCount = questionCount;
 		this.rightAnswerCount = rightAnswerCount;
+		this.quizDate=quizDate;
 	}
 
-	public QuizeScore() {
+	public QuizScore() {
 		super();
 	}
 
@@ -74,13 +74,6 @@ public class QuizeScore {
 		this.category = category;
 	}
 
-	public QuestionSubcategory getSubcategory() {
-		return subcategory;
-	}
-
-	public void setSubcategory(QuestionSubcategory subcategory) {
-		this.subcategory = subcategory;
-	}
 
 	public int getQuestionCount() {
 		return questionCount;
@@ -96,6 +89,14 @@ public class QuizeScore {
 
 	public void setRightAnswerCount(int rightAnswerCount) {
 		this.rightAnswerCount = rightAnswerCount;
+	}
+
+	public LocalDate getQuizDate() {
+		return quizDate;
+	}
+
+	public void setQuizDate(LocalDate quizDate) {
+		this.quizDate = quizDate;
 	}
 
 }

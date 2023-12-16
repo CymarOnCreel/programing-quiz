@@ -1,4 +1,3 @@
-
 <html layout:decorate="fragments/defaultLayout"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:th="http://www.thymeleaf.org">
@@ -19,21 +18,23 @@
 						<thead>
 							<tr>
 								<th>Question</th>
-								<th>Answer</th>
+								<th>Answers</th>
 							</tr>
 						</thead>
 						<tbody>
-							<th:block th:each="q: ${filteredQuestions}">
+							<th:block th:each="question : ${filteredQuestions}">
 								<tr>
-									<td><span th:text="${q.questionText}">question</span></td>
-									<td>
-									<div th:each="a : ${answersOfQuestion}"
-										class="answersOfQuestion">
-										<label class="m-2"> <input class="form-check-input" type="radio"
-											name="answersOfQuestion" th:value="${a.id}" /> <span
-											th:text="${a.answerText}"></span>
-										</label>
-									</div>
+									<td><span th:text="${question.questionText}">question</span></td>
+									<td><div th:each="answer : ${question.answers}">
+												<label class="m-2"> <input class="form-check-input"
+													type="radio"
+													th:name="'answersByQuestionId_' + ${question.id}"
+													th:value="${answer.id}"
+													th:id="'answer_' + ${question.id} + '_' + ${answer.id}" />
+												<span th:text="${answer.answerText}"></span>
+												</label>
+											</div>
+										</td>
 								</tr>
 							</th:block>
 						</tbody>
