@@ -25,7 +25,7 @@
 							<th:block th:each="question : ${filteredQuestions}">
 								<tr>
 									<td><span th:text="${question.questionText}">question</span></td>
-									<td><div th:each="answer : ${question.answers}">
+									<td><div th:each="answer : ${question.getShuffledAnswers}">
 												<label class="m-2"> <input class="form-check-input"
 													type="radio"
 													th:name="'answersByQuestionId_' + ${question.id}"

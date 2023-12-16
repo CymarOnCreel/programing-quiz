@@ -1,6 +1,7 @@
 package hu.cymar.tamzol.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,15 +26,18 @@ public class QuizService implements IQuizCreation {
 	public List<Question> getQuestionsByCategoryAndSubcategoriesChoosen(QuestionCategory category,
 			List<QuestionSubcategory> subcategories) {
 		if (category != null && subcategories != null && !subcategories.isEmpty()) {
-			return questionRepository.findByCategoryAndSubcategoryIn(category, subcategories);
+			 List<Question> questions = questionRepository.findByCategoryAndSubcategoryIn(category, subcategories);
+		        Collections.shuffle(questions);
+			
+			return questions;
 		}
 
 		return Collections.emptyList();
 	}
 
 
-	public List<Answer> getAnswersByQuestionId(Long id) {
-		return answerRepository.getAnswersByQuestionId(id);
+	public List<Answer> getRandomizedAnswersByQuestionId(Long id) {
+		return questionRepository.findById(id).get().getShuffledAnswers();
 	}
 
 	public List<Answer> getAnswersById(List<Long> answerId) {
@@ -56,8 +60,8 @@ public class QuizService implements IQuizCreation {
 	public List<List<Answer>> getAnswersList(Model model, List<Question>filteredQuestions){
 		 List<List<Answer>> answersOfQuestions = new ArrayList<>();
 		 for (Question question : filteredQuestions) {
-		        answersOfQuestions.add(getAnswersByQuestionId(question.getId()));
-		    }
+		        answersOfQuestions.add(getRandomizedAnswersByQuestionId(question.getId()));
+				    }
 		 model.addAttribute("answersOfQuestions", answersOfQuestions);
 		 return answersOfQuestions;
 	}

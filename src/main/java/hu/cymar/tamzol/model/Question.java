@@ -1,5 +1,7 @@
 package hu.cymar.tamzol.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -108,4 +110,12 @@ public class Question {
 	public void setAnswers(List<Answer> answers) {
 		this.answers = answers;
 	}
+
+	public List<Answer> getShuffledAnswers() {
+		List<Answer> answers = this.getAnswers();
+		List<Answer> shuffledAnswers = new ArrayList<>(answers);
+		Collections.shuffle(shuffledAnswers);
+		return shuffledAnswers;
+	}
+
 }
