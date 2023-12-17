@@ -2,11 +2,41 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <meta charset="UTF-8">
-<body>
-	<div layout:fragment="content"
-		class="d-flex justify-content-center align-items-center flex-grow-1">
-		<h1>Comming Soon</h1>
-	</div>
+<body class="d-flex flex-column">
+	<div class="row flex-grow-1" layout:fragment="content">
 
+		<div>
+			<h1 class="jumbotron bg-succes text-white display-4 text-center" th:text="'Here are the quiz scores ' + ${session.user.userName}"></h1>
+		</div>
+		<div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Category</th>
+						<th scope="col">Total Questions Taken</th>
+						<th scope="col">Total Right Answers</th>
+						<th scope="col">Quiz Date</th>
+						<th scope="col">Quiz Result</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:each="quizScore : ${quizScores}">
+						<tr>
+							<td><span th:text="${quizScore.category}">question</span></td>
+							<td><span th:text="${quizScore.questionCount}">questionCount</span></td>
+							<td><span th:text="${quizScore.rightAnswerCount}">rightAnswerCount</span></td>
+							<td><span th:text="${quizScore.quizDate}">Date</span></td>
+							<td><span
+								th:text="${#numbers.formatDecimal(quizScore.quizScoreResultPercentage(quizScore.questionCount, quizScore.rightAnswerCount),2,2,'POINT')}">percentage</span></td>
+
+
+						</tr>
+					</th:block>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
 </body>
 </html>

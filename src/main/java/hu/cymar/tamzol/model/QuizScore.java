@@ -98,5 +98,7 @@ public class QuizScore {
 	public void setQuizDate(LocalDate quizDate) {
 		this.quizDate = quizDate;
 	}
-
+	public double quizScoreResultPercentage(int totalQuestionCount, int rightAnswerCount) {
+		return ((double)rightAnswerCount/totalQuestionCount)*100;
+	}
 }

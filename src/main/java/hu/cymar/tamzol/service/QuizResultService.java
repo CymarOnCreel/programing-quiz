@@ -2,6 +2,7 @@ package hu.cymar.tamzol.service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +20,8 @@ public class QuizResultService {
 
 	 @Autowired
 	    private QuizScoreRepository quizScoreRepo;
-	 @Autowired
-	 private AnswerRepository answerRepo;
+//	 @Autowired
+//	 private AnswerRepository answerRepo;
 
 	   public void saveQuizResult(int questionCount,int rightAnswerCount,QuizScore quizScoreObj, User user, QuestionCategory selectedCategory) {
 	        if (quizScoreObj.getQuizDate() == null) {
@@ -54,4 +55,8 @@ public class QuizResultService {
 	                .filter(answer -> answer.getId().equals(userAnswerId))
 	                .anyMatch(Answer::isCorrect);
 	    }
+
+		public List<QuizScore> findByUser(User user) {
+					return quizScoreRepo.findByUser(user);
+		}
 }
