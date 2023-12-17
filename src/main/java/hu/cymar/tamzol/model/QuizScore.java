@@ -98,7 +98,12 @@ public class QuizScore {
 	public void setQuizDate(LocalDate quizDate) {
 		this.quizDate = quizDate;
 	}
-	public double quizScoreResultPercentage(int totalQuestionCount, int rightAnswerCount) {
-		return ((double)rightAnswerCount/totalQuestionCount)*100;
+	public double quizScoreResultPercentage(int questionCount, int rightAnswerCount) {
+		return ((double)rightAnswerCount/questionCount)*100;
+	}
+	
+	public boolean isQuizPassed(double minimumPercentageForQuizPass) {
+	    double percentage = quizScoreResultPercentage(questionCount, rightAnswerCount);
+	    return percentage >= minimumPercentageForQuizPass;
 	}
 }

@@ -20,8 +20,6 @@ public class QuizResultService {
 
 	 @Autowired
 	    private QuizScoreRepository quizScoreRepo;
-//	 @Autowired
-//	 private AnswerRepository answerRepo;
 
 	   public void saveQuizResult(int questionCount,int rightAnswerCount,QuizScore quizScoreObj, User user, QuestionCategory selectedCategory) {
 	        if (quizScoreObj.getQuizDate() == null) {
@@ -59,4 +57,5 @@ public class QuizResultService {
 		public List<QuizScore> findByUser(User user) {
 					return quizScoreRepo.findByUser(user);
 		}
+		
 }

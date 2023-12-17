@@ -1,17 +1,18 @@
 <html layout:decorate="fragments/defaultLayout"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
 
 <meta charset="UTF-8">
 <body class="d-flex flex-column">
 	<div class="row flex-grow-1" layout:fragment="content">
 
 		<div>
-			<h1 class="jumbotron bg-succes text-white display-4 text-center" th:text="'Here are the quiz scores ' + ${session.user.userName}"></h1>
+			<h1 class="jumbotron bg-success text-white display-4 text-center" th:text="${session.user.userName}+' here are your quiz scores '"></h1>
 		</div>
 		<div>
 			<table class="table">
 				<thead>
-					<tr>
+					<tr class="table-info text-center">
 						<th scope="col">Category</th>
 						<th scope="col">Total Questions Taken</th>
 						<th scope="col">Total Right Answers</th>
@@ -21,13 +22,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					<th:block th:each="quizScore : ${quizScores}">
-						<tr>
-							<td><span th:text="${quizScore.category}">question</span></td>
-							<td><span th:text="${quizScore.questionCount}">questionCount</span></td>
-							<td><span th:text="${quizScore.rightAnswerCount}">rightAnswerCount</span></td>
-							<td><span th:text="${quizScore.quizDate}">Date</span></td>
-							<td><span
+					<th:block  th:each="quizScore : ${quizScores}">
+						<tr class="text-center" th:class="${quizScore.isQuizPassed(passingPercentage) ? 'table-success' : 'table-danger'}">
+							<td><span  th:text="${quizScore.category.categoryName}">question</span></td>
+							<td><span  th:text="${quizScore.questionCount}+${quizScore.isQuizPassed(passingPercentage)}">questionCount</span></td>
+							<td><span  th:text="${quizScore.rightAnswerCount}">rightAnswerCount</span></td>
+							<td><span  th:text="${quizScore.quizDate}">Date</span></td>
+							<td><span 
 								th:text="${#numbers.formatDecimal(quizScore.quizScoreResultPercentage(quizScore.questionCount, quizScore.rightAnswerCount),2,2,'POINT')}">percentage</span></td>
 
 

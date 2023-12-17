@@ -16,6 +16,7 @@ import hu.cymar.tamzol.service.QuizResultService;
 @Controller
 public class DashboardController {
 
+	 private static final double PASSING_PERCENTAGE = 75.0;
 	@Autowired 
 	QuizResultService quizResultservice;
 	@GetMapping("dashboard")
@@ -23,14 +24,8 @@ public class DashboardController {
 		User user=(User) session.getAttribute("user");
 		System.out.println(user.getUserName());
 		List<QuizScore> quizScores=quizResultservice.findByUser(user);	
-		for (QuizScore quizScore : quizScores) {
-			System.out.println(quizScore.toString());
-		}
-		
-	
 		model.addAttribute("quizScores", quizScores);
-		return "dashboard";
+		model.addAttribute("passingPercentage", PASSING_PERCENTAGE);
+	return "dashboard";
 	}
-	
-	
 }

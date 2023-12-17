@@ -10,4 +10,5 @@ import hu.cymar.tamzol.model.User;
 public interface QuizScoreRepository extends JpaRepository<QuizScore, Long>{
 
 	List<QuizScore> findByUser(User user);
+	
 }
