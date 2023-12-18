@@ -1,5 +1,7 @@
 package hu.cymar.tamzol.controller;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -24,6 +26,7 @@ public class DashboardController {
 		User user=(User) session.getAttribute("user");
 		System.out.println(user.getUserName());
 		List<QuizScore> quizScores=quizResultservice.findByUser(user);	
+		 Collections.sort(quizScores, Comparator.comparing(QuizScore::getQuizDate).reversed());
 		model.addAttribute("quizScores", quizScores);
 		model.addAttribute("passingPercentage", PASSING_PERCENTAGE);
 	return "dashboard";

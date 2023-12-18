@@ -23,12 +23,12 @@
 				</thead>
 				<tbody>
 					<th:block  th:each="quizScore : ${quizScores}">
-						<tr class="text-center" th:class="${quizScore.isQuizPassed(passingPercentage) ? 'table-success' : 'table-danger'}">
-							<td><span  th:text="${quizScore.category.categoryName}">question</span></td>
-							<td><span  th:text="${quizScore.questionCount}+${quizScore.isQuizPassed(passingPercentage)}">questionCount</span></td>
-							<td><span  th:text="${quizScore.rightAnswerCount}">rightAnswerCount</span></td>
-							<td><span  th:text="${quizScore.quizDate}">Date</span></td>
-							<td><span 
+						<tr th:class="${quizScore.isQuizPassed(passingPercentage) ? 'table-success' : 'table-danger'}">
+							<td class="text-center"><span  th:text="${quizScore.category.categoryName}">question</span></td>
+							<td class="text-center"><span  th:text="${quizScore.questionCount}">questionCount</span></td>
+							<td class="text-center"><span  th:text="${quizScore.rightAnswerCount}">rightAnswerCount</span></td>
+							<td class="text-center"><span th:text="${quizScore.quizDate}">Date</span></td>
+							<td class="text-center"><span 
 								th:text="${#numbers.formatDecimal(quizScore.quizScoreResultPercentage(quizScore.questionCount, quizScore.rightAnswerCount),2,2,'POINT')}">percentage</span></td>
 
 
