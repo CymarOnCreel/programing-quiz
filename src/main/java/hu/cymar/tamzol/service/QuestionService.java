@@ -19,4 +19,9 @@ public class QuestionService {
 		return qr.findAll();
 	}
 
+	public void deleteQuestionById(Long id) {
+		qr.deleteById(id);
+		
+	}
+
 }
