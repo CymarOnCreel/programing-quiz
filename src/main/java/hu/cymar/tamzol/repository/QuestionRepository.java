@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import hu.cymar.tamzol.model.Question;
 import hu.cymar.tamzol.model.QuestionCategory;
+import hu.cymar.tamzol.model.QuestionStatus;
 import hu.cymar.tamzol.model.QuestionSubcategory;
 
 public interface QuestionRepository extends JpaRepository<Question, Long> {

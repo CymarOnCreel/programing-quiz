@@ -12,7 +12,9 @@ INSERT INTO questions (question_text, question_status,category_id, subcategory_i
 ('How to declare a variable in Java?','ACCEPTED', 1, 2),
 ('What is a for loop?','ACCEPTED', 1, 3),
 ('Explain the concept of inheritance.','ACCEPTED', 1, 4),
-('What is JUnit?','REJECTED', 1, 5);
+('What is JUnit?','ACCEPTED', 1, 5),
+ ('What is Python?', 'IN_PROGRESS',1, 1),
+ ('What is Pascal?', 'REJECTED',1, 1);
 INSERT INTO answers (answer_text,question_id, is_correct) VALUES
 -- Question 1
 ('A programming language', 1, 1),
