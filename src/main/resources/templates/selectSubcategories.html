@@ -16,10 +16,20 @@
 						th:text="${subcategory.subcategoryName}"></span>
 					</label>
 				</div>
+				<div class="form-group mt-3">
+					<label for="numQuestions">Number of Questions: <input
+						type="number" class="form-control" id="numQuestions"
+						name="numQuestions" min="1" value="1">
+						<p class="fs-6 fst-italic"> *if questions available in choosen<br> categories is less then number,<br> it will generate all the questions<br> from the choosen categories.</p>
+						<button type="submit" class="btn btn-primary btn-lg mt-3" name="action" value="generateQuestions">Generate
+							Questions</button></label>
+				</div>
+				<div>
+				<button type="submit" class="btn btn-primary btn-lg mt-3"
+					name="action" value="getAllQuestions">Get All Questions</button></div>
 				<div th:if="${error}" class="alert alert-danger" role="alert">
 					<span th:text="${error}"></span>
 				</div>
-				<button type="submit" class="btn btn-primary btn-lg mt-3">Submit</button>
 			</form>
 		</div>
 	</div>

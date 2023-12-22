@@ -25,14 +25,16 @@ public class QuizService implements IQuizCreation {
 	AnswerRepository answerRepository;
 
 	public List<Question> getFilteredQuestions(QuestionCategory selectedCategory,
-			List<QuestionSubcategory> subcategories, Model model) {
+			List<QuestionSubcategory> subcategories, Model model, int numberOfQuestionsToGenerate) {
 		List<Question> questions = getShuffledAcceptedQuestionsByCategoryAndSubcategoriesChoosen(selectedCategory,
 				subcategories);
-		List<Question> filteredQuestions = questions.stream()
+		List<Question> filteredQuestions = questions.stream().limit(numberOfQuestionsToGenerate)
 		        .collect(Collectors.toList());
 		model.addAttribute("filteredQuestions", filteredQuestions);
 		return filteredQuestions;
 	}
+	
+	
 
 	public List<List<Answer>> getAnswersList(Model model, List<Question> filteredQuestions) {
 		List<List<Answer>> answersOfQuestions = new ArrayList<>();
@@ -52,7 +54,6 @@ public class QuizService implements IQuizCreation {
 
 			return shuffledAcceptedQuestions;
 		}
-
 		return Collections.emptyList();
 	}
 
@@ -81,6 +82,9 @@ public class QuizService implements IQuizCreation {
 
 	public List<Answer> getAnswersById(List<Long> answerIds) {
 		return answerIds.stream().map(answerRepository::getAnswersById).collect(Collectors.toList());
+	}
+	public List<Question> getAllQuestions(){
+		return questionRepository.findAll();
 	}
 
 }
