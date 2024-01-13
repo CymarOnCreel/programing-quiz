@@ -39,4 +39,8 @@ public class QuestionManagementController {
         }
     }
 
+	@GetMapping("/edit/{id}")
+	public String editQuestion(@PathVariable Long id) {
+		return "edit";
+	}
 }

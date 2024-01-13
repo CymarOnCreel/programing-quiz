@@ -11,10 +11,10 @@ INSERT INTO question_subcategories (subcategory_name, category_id) VALUES
 ('OOP', (SELECT id FROM question_categories WHERE category_name = 'Java')),
 ('Alapok', (SELECT id FROM question_categories WHERE category_name = 'Java')),
 ('Emelt', (SELECT id FROM question_categories WHERE category_name = 'Java')),
+('Adatbázis', (SELECT id FROM question_categories WHERE category_name = 'Java')),
 ('Grafika', (SELECT id FROM question_categories WHERE category_name = 'Java')),
 ('Maven', (SELECT id FROM question_categories WHERE category_name = 'Java')),
-('JavaEE', (SELECT id FROM question_categories WHERE category_name = 'Java')),
-('Adatbázis', (SELECT id FROM question_categories WHERE category_name = 'Java'));
+('JavaEE', (SELECT id FROM question_categories WHERE category_name = 'Java'));
 
 -- Inserting data into Question Subcategory Table for C#
 -- (Assuming similar subcategories as Java, modify as needed)

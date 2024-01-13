@@ -12,8 +12,12 @@
 		</div>
 
 		<div>
-			<h2>Total Questions: <span th:text="${questionCount}"></span></h2>
-			<h2>Correct Answers: <span th:text="${rightAnswerCount}"></span></h2>
+			<h2>
+				Total Questions: <span th:text="${questionCount}"></span>
+			</h2>
+			<h2>
+				Correct Answers: <span th:text="${rightAnswerCount}"></span>
+			</h2>
 		</div>
 
 		<div class="row">
@@ -26,19 +30,20 @@
 						</tr>
 					</thead>
 					<tbody>
-					<th:block th:each="question, questionIndex: ${filteredQuestions}">
-					<tr>
-					<td>
-					<span th:text="${question.questionText}">question</span></td>
-					<td>
-					<div th:each="answer, answerIndex: ${question.answers}">
-					<label class="m-2" th:class="${answer.isCorrect ? 'bg-success' : (!userAnswers[questionIndex.index].isCorrect&& userAnswers[questionIndex.index].id == answer.id) ? 'bg-danger' : ''}">
+						<th:block th:each="question, questionIndex: ${filteredQuestions}">
+							<tr>
+								<td><span th:text="${question.questionText}">question</span></td>
+								<td>
+									<div th:each="answer, answerIndex: ${question.answers}">
+										<label class="m-2"
+											th:class="${allAnswerClasses[__${(questionIndex.index * question.answers.size()) + answerIndex.index}__]}">
+											<input class="form-check-input" type="radio"
+											disabled="disabled" th:checked="${isChecked}" />
+											 <span th:text="${answer.answerText + ' (' + allAnswerClasses[__${questionIndex.index * question.answers.size() + answerIndex.index}__] + ')'}"></span>
 
-											<input class="form-check-input" type="radio" disabled="disabled"
-												th:checked="${userAnswers[questionIndex.index] == answer.id}" />
-											<span th:text="${answer.answerText}"></span>
 										</label>
 									</div>
+
 								</td>
 							</tr>
 					</tbody>

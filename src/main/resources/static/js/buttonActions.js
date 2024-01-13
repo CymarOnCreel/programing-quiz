@@ -25,3 +25,8 @@ function deleteQuestion(element) {
         });
     }
 }
+
+function updateQuestion(elment){
+	
+	
+}
