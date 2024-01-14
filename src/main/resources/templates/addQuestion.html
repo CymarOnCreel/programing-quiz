@@ -4,61 +4,72 @@
 <meta charset="UTF-8">
 
 <body class="d-flex flex-column bg-success-subtle">
-	<div
-		class="align-items-center justify-content-center flex-grow-1"
+	<div class="align-items-center justify-content-center flex-grow-1"
 		layout:fragment="content">
 		<div class="text-center">
 			<p class="display-2 text-white bg-success"
-				>ide a user</p>
-		<!--th:text="  ${session.user.userName}+' ask a question for review'">--></div>
-		<form action="@{/addQuestion}" method="post" class="text-center col-md-6 offset-md-3">
-		<div class="container">
-			<div class="mb-3 fs-4">
-				<h3 class="bg-primary text-white">Question:</h3> 
-				<textarea class="form-control bg-warning-subtle" rows="2" id="inputQuestion" name="question"
-					required></textarea>
-			</div>
-			<div class="mb-3 fs-4 bg-primary text-white">
-				<h3>Add four possible answers, with right answer checked</h3>
-			</div>
-			<div class="input-group mb-3 fs-4">
-				<div class="input-group-text bg-body-secondary">
-					<input class="form-check-input " type="radio" name="answer"
-						value="answer1" aria-label="Radio button for following text input">
+			th:text="  ${session.user.userName}+' ask a question for review'" ></p>
+		</div>
+		<form action="" method="post" class="text-center col-md-6 offset-md-3">
+			<div class="container">
+				<div class="mb-3 fs-4">
+					<h3 class="bg-primary text-white">Question:</h3>
+					<textarea class="form-control bg-warning-subtle" rows="2"
+						id="inputQuestion" name="questionText" required></textarea>
 				</div>
-				<textarea class="form-control bg-warning-subtle " rows="2" name="textAnswer1"
-					aria-label="Text input with radio button"></textarea>
-			</div>
-			<div class="input-group mb-3 fs-4 ">
-				<div class="input-group-text  bg-body-secondary">
-					<input class="form-check-input" type="radio" name="answer"
-						value="answer2" aria-label="Radio button for following text input">
+				<div class="mb-3 fs-4 bg-primary text-white">
+					<h3>Add four possible answers, with right answer checked</h3>
 				</div>
-			<textarea class="form-control bg-warning-subtle" rows="2" name="textAnswer2"
-					aria-label="Text input with radio button"></textarea>
-			</div>
-			<div class="input-group mb-3 fs-4">
+				<div class="input-group mb-3 fs-4">
 					<div class="input-group-text bg-body-secondary">
-					<input class="form-check-input" type="radio" name="answer"
-						value="answer3" aria-label="Radio button for following text input">
+						<input class="form-check-input " type="radio" name="correctAnswer"
+							value="answer1"
+							aria-label="Radio button for following text input">
+					</div>
+					<textarea class="form-control bg-warning-subtle " rows="2"
+						name="textAnswer1" aria-label="Text input with radio button"></textarea>
 				</div>
-			<textarea class="form-control bg-warning-subtle " rows="2" name="textAnswer3"
-					aria-label="Text input with radio button"></textarea>
-			</div>
-			<div class="input-group mb-3 fs-4">
-				<div class="input-group-text bg-body-secondary">
-					<input class="form-check-input" type="radio" name="answer"
-						value="answer4" aria-label="Radio button for following text input">
+				<div class="input-group mb-3 fs-4 ">
+					<div class="input-group-text  bg-body-secondary">
+						<input class="form-check-input" type="radio" name="correctAnswer"
+							value="answer2"
+							aria-label="Radio button for following text input">
+					</div>
+					<textarea class="form-control bg-warning-subtle" rows="2"
+						name="textAnswer2" aria-label="Text input with radio button"></textarea>
 				</div>
-			<textarea class="form-control bg-warning-subtle " rows="2" name="textAnswer4"
-					aria-label="Text input with radio button"></textarea>
-			</div>
+				<div class="input-group mb-3 fs-4">
+					<div class="input-group-text bg-body-secondary">
+						<input class="form-check-input" type="radio" name="correctAnswer"
+							value="answer3"
+							aria-label="Radio button for following text input">
+					</div>
+					<textarea class="form-control bg-warning-subtle " rows="2"
+						name="textAnswer3" aria-label="Text input with radio button"></textarea>
+				</div>
+				<div class="input-group mb-3 fs-4">
+					<div class="input-group-text bg-body-secondary">
+						<input class="form-check-input" type="radio" name="correctAnswer"
+							value="answer4"
+							aria-label="Radio button for following text input">
+					</div>
+					<textarea class="form-control bg-warning-subtle " rows="2"
+						name="textAnswer4" aria-label="Text input with radio button"></textarea>
+				</div>
+				<div class="mb-3 fs-4 bg-primary text-white">
+					<h3>Select a programming language category:</h3>
+				</div>
+				<select class="form-select form-select-lg mb-3" name="categoryId"
+					aria-label="Large select example">
+					<option th:each="category : ${categories}"
+						th:value="${category.id}" th:text="${category.categoryName}"></option>
+				</select>
 
-			<div class="d-flex justify-content-between align-items-center">
-				<button type="submit"
-					class="btn btn-primary btn-lg btn-primary-active-subtle fs-3 fw-bold">Send
-					Question For Review</button>
-			</div>
+				<div class="d-flex justify-content-between align-items-center">
+					<button type="submit"
+						class="btn btn-primary btn-lg btn-primary-active-subtle fs-3 fw-bold">Send
+						Question For Review</button>
+				</div>
 			</div>
 		</form>
 	</div>

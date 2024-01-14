@@ -118,4 +118,10 @@ public class Question {
 		return shuffledAnswers;
 	}
 
+	@Override
+	public String toString() {
+		return "Question [id=" + id + ", questionText=" + questionText + ", questionStatus=" + questionStatus
+				+ ", category=" + category + ", subcategory=" + subcategory + ", answers=" + answers + "]";
+	}
+
 }

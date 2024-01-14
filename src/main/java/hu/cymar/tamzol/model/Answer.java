@@ -70,6 +70,12 @@ public class Answer {
 	public void setCorrect(boolean isCorrect) {
 		this.isCorrect = isCorrect;
 	}
+
+	@Override
+	public String toString() {
+		return "Answer [id=" + id + ", answerText=" + answerText + ", question=" + question + ", isCorrect=" + isCorrect
+				+ "]";
+	}
 	
 	
 }

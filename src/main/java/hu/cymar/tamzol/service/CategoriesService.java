@@ -32,6 +32,9 @@ public class CategoriesService {
 		return categoryRepository.findById(id).orElse(null);
 	}
 
+	public QuestionSubcategory getBysubcategoryName(String subcategoryName) {
+		return subcategoryRepository.getBysubcategoryName(subcategoryName);
+	}
 
 	public QuestionSubcategory getSubcategoryById(Long id) {
 		return subcategoryRepository.findById(id).orElse(null);

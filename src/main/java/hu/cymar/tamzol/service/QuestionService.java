@@ -1,6 +1,7 @@
 package hu.cymar.tamzol.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,5 +24,15 @@ public class QuestionService {
 		qr.deleteById(id);
 		
 	}
-
+	   public Long getLastQuestionId() {
+	        return qr.findMaxId();
+	    }
+	   
+	   public void saveQuestion(Question questionObj) {
+		   qr.save(questionObj);
+	   }
+	   
+	   public Optional<Question> findById(Long id) {
+		   return qr.findById(id);
+	   }
 }

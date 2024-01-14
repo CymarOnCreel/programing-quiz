@@ -1,6 +1,7 @@
 package hu.cymar.tamzol.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import hu.cymar.tamzol.model.Question;
+import hu.cymar.tamzol.model.QuestionStatus;
 import hu.cymar.tamzol.service.QuestionService;
 
 @Controller
@@ -32,7 +34,11 @@ public class QuestionManagementController {
 	 public ResponseEntity<String> deleteQuestion(@PathVariable Long id) {
       
         try {
-            qs.deleteQuestionById(id);
+        	
+        	Optional<Question> question=qs.findById(id);
+         Question questionUpdate=question.get();
+         questionUpdate.setQuestionStatus(QuestionStatus.REJECTED);
+         qs.saveQuestion(questionUpdate);
             return ResponseEntity.ok("Question deleted successfully");
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Error deleting question");
@@ -41,6 +47,7 @@ public class QuestionManagementController {
 
 	@GetMapping("/edit/{id}")
 	public String editQuestion(@PathVariable Long id) {
+		
 		return "edit";
 	}
 }

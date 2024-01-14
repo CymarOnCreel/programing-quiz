@@ -14,28 +14,27 @@ INSERT INTO question_subcategories (subcategory_name, category_id) VALUES
 ('Adatbázis', (SELECT id FROM question_categories WHERE category_name = 'Java')),
 ('Grafika', (SELECT id FROM question_categories WHERE category_name = 'Java')),
 ('Maven', (SELECT id FROM question_categories WHERE category_name = 'Java')),
-('JavaEE', (SELECT id FROM question_categories WHERE category_name = 'Java'));
+('JavaEE', (SELECT id FROM question_categories WHERE category_name = 'Java')),
+('ToChangeSubcategory', (SELECT id FROM question_categories WHERE category_name = 'Java'));
 
--- Inserting data into Question Subcategory Table for C#
--- (Assuming similar subcategories as Java, modify as needed)
 INSERT INTO question_subcategories (subcategory_name, category_id) VALUES
 ('C# Subcategory 1', (SELECT id FROM question_categories WHERE category_name = 'C#')),
-('C# Subcategory 2', (SELECT id FROM question_categories WHERE category_name = 'C#'));
+('C# Subcategory 2', (SELECT id FROM question_categories WHERE category_name = 'C#')),
+('ToChangeSubcategory', (SELECT id FROM question_categories WHERE category_name = 'C#'));
 
--- Inserting data into Question Subcategory Table for C++
--- (Assuming similar subcategories as Java, modify as needed)
+
 INSERT INTO question_subcategories (subcategory_name, category_id) VALUES
 ('C++ Subcategory 1', (SELECT id FROM question_categories WHERE category_name = 'C++')),
-('C++ Subcategory 2', (SELECT id FROM question_categories WHERE category_name = 'C++'));
+('C++ Subcategory 2', (SELECT id FROM question_categories WHERE category_name = 'C++')),
+('ToChangeSubcategory', (SELECT id FROM question_categories WHERE category_name = 'C++'));
 
--- Inserting data into Question Subcategory Table for Python
--- (Assuming similar subcategories as Java, modify as needed)
 INSERT INTO question_subcategories (subcategory_name, category_id) VALUES
 ('Python Subcategory 1', (SELECT id FROM question_categories WHERE category_name = 'Python')),
-('Python Subcategory 2', (SELECT id FROM question_categories WHERE category_name = 'Python'));
+('Python Subcategory 2', (SELECT id FROM question_categories WHERE category_name = 'Python')),
+('ToChangeSubcategory', (SELECT id FROM question_categories WHERE category_name = 'Python'));
 
--- Inserting data into Question Subcategory Table for PHP
--- (Assuming similar subcategories as Java, modify as needed)
+
 INSERT INTO question_subcategories (subcategory_name, category_id) VALUES
 ('PHP Subcategory 1', (SELECT id FROM question_categories WHERE category_name = 'PHP')),
-('PHP Subcategory 2', (SELECT id FROM question_categories WHERE category_name = 'PHP'));
+('PHP Subcategory 2', (SELECT id FROM question_categories WHERE category_name = 'PHP')),
+('ToChangeSubcategory', (SELECT id FROM question_categories WHERE category_name = 'PHP'));

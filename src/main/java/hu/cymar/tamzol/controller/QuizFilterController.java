@@ -1,5 +1,6 @@
 package hu.cymar.tamzol.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -50,6 +51,13 @@ public class QuizFilterController {
 		QuestionCategory selectedCategory = (QuestionCategory) session.getAttribute("selectedCategory");
 		model.addAttribute("selectedCategory", selectedCategory);
 		List<QuestionSubcategory> subcategories = catService.getSubcategoriesByCategoryId(selectedCategory.getId());
+		 Iterator<QuestionSubcategory> iterator = subcategories.iterator();
+		    while (iterator.hasNext()) {
+		        QuestionSubcategory questionSubcategory = iterator.next();
+		        if (questionSubcategory.getSubcategoryName().equalsIgnoreCase("ToChangeSubcategory")) {
+		            iterator.remove(); 
+		        }
+		    }
 		model.addAttribute("subcategories", subcategories);
 	}
 }
