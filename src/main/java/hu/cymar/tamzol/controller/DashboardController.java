@@ -24,9 +24,8 @@ public class DashboardController {
 	@GetMapping("dashboard")
 	public String newDashBoardView(Model model, HttpSession session) {
 		User user=(User) session.getAttribute("user");
-		System.out.println(user.getUserName());
 		List<QuizScore> quizScores=quizResultservice.findByUser(user);	
-		 Collections.sort(quizScores, Comparator.comparing(QuizScore::getQuizDate).reversed());
+		Collections.sort(quizScores, Comparator.comparing(QuizScore::getQuizDate).reversed());
 		model.addAttribute("quizScores", quizScores);
 		model.addAttribute("passingPercentage", PASSING_PERCENTAGE);
 	return "dashboard";
