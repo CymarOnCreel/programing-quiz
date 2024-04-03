@@ -16,8 +16,4 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
     @Query("SELECT MAX(q.id) FROM Question q")
     Long findMaxId();
    
-
-    
-
-    
 }
