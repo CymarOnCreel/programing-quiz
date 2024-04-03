@@ -29,7 +29,7 @@
 							<td class="text-center"><span  th:text="${quizScore.rightAnswerCount}">rightAnswerCount</span></td>
 							<td class="text-center"><span th:text="${quizScore.quizDate}">Date</span></td>
 							<td class="text-center"><span 
-								th:text="${#numbers.formatDecimal(quizScore.quizScoreResultPercentage(quizScore.questionCount, quizScore.rightAnswerCount),2,2,'POINT')}">percentage</span></td>
+								th:text="${#numbers.formatDecimal(quizScore.quizScoreResultPercentage(quizScore.questionCount, quizScore.rightAnswerCount),2,1,'POINT')}+ ' %'">Score</span></td>
 
 
 						</tr>

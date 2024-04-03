@@ -47,14 +47,7 @@ public class AddQuestionController {
 	public String saveQuestionAndAnswer(@ModelAttribute QuestionForm questionForm,
 			@RequestParam(name = "categoryId") Long id) {
 		Question question = new Question();
-		question.setQuestionText(questionForm.getQuestionText());
-		QuestionCategory category = categoryService.getCategoryById(id);
-		QuestionSubcategory subcategory= categoryService.getBysubcategoryName("ToChangeSubcategory");
-		long lastIndex = questionService.getLastQuestionId();
-		question.setId(lastIndex + 1);
-		question.setCategory(category);
-		question.setSubcategory(subcategory);
-		question.setQuestionStatus(QuestionStatus.IN_PROGRESS);
+		setQuestionData(questionForm, id, question);
 		questionService.saveQuestion(question);
 		List<Answer> answers = createAnswers(questionForm, question);
 		for (Answer answer : answers) {
@@ -64,9 +57,24 @@ public class AddQuestionController {
 		return "redirect:/";
 	}
 
+	private Question setQuestionData(QuestionForm questionForm, Long categoryId, Question question) {
+		question.setQuestionText(questionForm.getQuestionText());
+		QuestionCategory category = categoryService.getCategoryById(categoryId);
+		QuestionSubcategory subcategory= categoryService.getBysubcategoryName("ToChangeSubcategory");
+		long lastIndex = questionService.getLastQuestionId();
+		question.setId(lastIndex + 1);
+		question.setCategory(category);
+		question.setSubcategory(subcategory);
+		question.setQuestionStatus(QuestionStatus.IN_PROGRESS);
+		return question;
+		
+	}
+	@SuppressWarnings("unlikely-arg-type")
 	private List<Answer> createAnswers(QuestionForm questionForm, Question question) {
 		List<Answer> answers = new ArrayList<>();
-
+		Answer answer0 = createAnswer(questionForm.getTextAnswer0(), questionForm.getCorrectAnswer().equals("answer0"),
+				question);
+		answers.add(answer0);
 		Answer answer1 = createAnswer(questionForm.getTextAnswer1(), questionForm.getCorrectAnswer().equals("answer1"),
 				question);
 		answers.add(answer1);
@@ -78,11 +86,6 @@ public class AddQuestionController {
 		Answer answer3 = createAnswer(questionForm.getTextAnswer3(), questionForm.getCorrectAnswer().equals("answer3"),
 				question);
 		answers.add(answer3);
-
-		Answer answer4 = createAnswer(questionForm.getTextAnswer4(), questionForm.getCorrectAnswer().equals("answer4"),
-				question);
-		answers.add(answer4);
-
 		return answers;
 	}
 

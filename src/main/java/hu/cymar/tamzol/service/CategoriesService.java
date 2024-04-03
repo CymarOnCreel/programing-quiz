@@ -22,7 +22,9 @@ public class CategoriesService {
 	public List<QuestionCategory> getAllCategories() {
 		return categoryRepository.findAll();
 	}
-
+	public List<QuestionSubcategory> getAllSubcategories() {
+		return subcategoryRepository.findAll();
+	}
 
 	public List<QuestionSubcategory> getSubcategoriesByCategoryId(Long categoryId) {
 		return subcategoryRepository.findByCategoryId(categoryId);

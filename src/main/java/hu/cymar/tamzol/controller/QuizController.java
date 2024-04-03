@@ -1,8 +1,6 @@
 package hu.cymar.tamzol.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,7 +14,6 @@ import hu.cymar.tamzol.model.Answer;
 import hu.cymar.tamzol.model.Question;
 import hu.cymar.tamzol.model.QuestionCategory;
 import hu.cymar.tamzol.model.QuestionSubcategory;
-import hu.cymar.tamzol.repository.QuestionRepository;
 import hu.cymar.tamzol.service.QuizService;
 
 @Controller

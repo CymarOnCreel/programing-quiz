@@ -1,10 +1,103 @@
-<!DOCTYPE html>
-<html>
-<head>
+<html layout:decorate="fragments/defaultLayout"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
 <meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<h1>Comming</h1>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<body class="d-flex flex-column bg-success-subtle">
+	<div class="align-items-center justify-content-center flex-grow-1"
+		layout:fragment="content">
+		<div class="mb-3 fs-4">
+			<form action="" method="post"
+				class="text-center col-md-6 offset-md-3">
+				<div class="container">
+					<h3 class="bg-primary text-white">Question:</h3>
+					<textarea class="form-control bg-warning-subtle" rows="2"
+						id="inputQuestion" name="questionText"
+						th:value="${question.questionText}"
+						th:text="${question.questionText}" required></textarea>
+				</div>
+				<div class="mb-3 fs-4 bg-primary text-white">
+					<h3>The four possible answers, with right answer checked</h3>
+				</div>
+				<div class="input-group mb-3 fs-4"
+					th:each="answer, answerIndex : ${question.answers}">
+					<div class="input-group-text bg-body-secondary">
+						<input class="form-check-input" type="radio" name="correctAnswer"
+							th:value="${'answer' + answerIndex.index}"
+							th:checked="${answer.isCorrect}">
+					</div>
+					<textarea class="form-control bg-warning-subtle" rows="2"
+						th:name="${'textAnswer' + answerIndex.index}"
+						th:value="${answer.answerText}" th:text="${answer.answerText}"
+						aria-label="Text input with radio button"></textarea>
+				</div>
+				<div th:each="answer, answerIndex : ${question.answers}">
+					<input type="hidden"
+						th:name="${'answerIds[' + answerIndex.index + ']'}"
+						th:value="${answer.id}" />
+				</div>
+				<div class="mb-3 fs-4 bg-primary text-white">
+					<h3>Select a programming language category:</h3>
+				</div>
+				<select class="form-select form-select-lg mb-3" name="categoryId"
+					id="categoryId" aria-label="Large select example">
+					<option th:each="category : ${categories}"
+						th:value="${category.id}" th:text="${category.categoryName}"
+						th:selected="${question.category.id == category.id}"></option>
+				</select>
+				<div class="mb-3 fs-4 bg-primary text-white">
+					<h3>Select a subcategory:</h3>
+				</div>
+				<select class="form-select form-select-lg mb-3" name="subcategoryId"
+					id="subcategoryId" aria-label="Large select example">
+					<option th:each="subcategory : ${subcategories}"
+						th:value="${subcategory.id}"
+						th:text="${subcategory.subcategoryName}"></option>
+				</select>
+				<div class="mb-3 fs-4 bg-primary text-white">
+					<h3>Select Question Status:</h3>
+				</div>
+				<select class="form-select form-select-lg mb-3" name="status"
+					id="status" aria-label="Large select example">
+					<option
+						th:each="statusOption : ${T(hu.cymar.tamzol.model.QuestionStatus).values()}"
+						th:value="${statusOption}" th:text="${statusOption.name()}"
+						th:selected="${question.questionStatus == statusOption}">
+					</option>
+				</select>
+				<div class="d-flex justify-content-between align-items-center">
+					<button type="submit"   th:attr="data-question-id=${question.id}" th:onclick="updateQuestion(this)"
+						class="btn btn-primary btn-lg btn-primary-active-subtle fs-3 fw-bold">UPDATE</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
 </body>
 </html>
+
+<script>
+	$(document).ready(function() {
+		var selectedCategoryId = $('#categoryId').val();
+		updateSubcategories(selectedCategoryId);
+
+		$('#categoryId').change(function() {
+			var categoryId = $(this).val();
+			updateSubcategories(categoryId);
+		});
+
+		function updateSubcategories(categoryId) {
+			$.ajax({
+				type : 'GET',
+				url : '/getSubcategories/' + categoryId,
+				success : function(htmlContent) {
+					$('#subcategoryId').html(htmlContent);
+				},
+				error : function(error) {
+					console.log('Error fetching subcategories:', error);
+				}
+			});
+		}
+	});
+</script>

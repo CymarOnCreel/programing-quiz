@@ -18,7 +18,7 @@ import hu.cymar.tamzol.service.QuizResultService;
 @Controller
 public class DashboardController {
 
-	 private static final double PASSING_PERCENTAGE = 75.0;
+	 private static final double PASSING_PERCENTAGE = 60.0;
 	@Autowired 
 	QuizResultService quizResultservice;
 	@GetMapping("dashboard")
